@@ -18,15 +18,15 @@ db = SQLAlchemy(app=app)
 
 class BaseTestCase(TestCase):
 
-    # @classmethod
-    # def setUpClass(cls):
-    #     with app.app_context():
-    #         db.create_all()
+    @classmethod
+    def setUpClass(cls):
+        with app.app_context():
+            db.create_all()
 
-    # @classmethod
-    # def tearDownClass(cls):
-    #     with app.app_context():
-    #         db.drop_all()
+    @classmethod
+    def tearDownClass(cls):
+        with app.app_context():
+            db.drop_all()
 
     def create_app(self):
         return app
