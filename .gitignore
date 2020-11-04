@@ -7,5 +7,3 @@ __pycache__/
 .pytest_cache/
 assets/
 test_report.html
-tests.py
-
