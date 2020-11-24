@@ -1,11 +1,19 @@
+import sentry_sdk
+
 from blog import env
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from sentry_sdk.integrations.flask import FlaskIntegration
 
+
+sentry_sdk.init(
+    dsn=env.SENTRY_DSN,
+    integrations=[FlaskIntegration()],
+    traces_sample_rate=1.0
+)
 
 app = Flask(__name__)
-app.response_class
 
 # 初始化数据库连接
 app.config["SQLALCHEMY_DATABASE_URI"] = env.SQLALCHEMY_DATABASE_URI
@@ -32,5 +40,7 @@ from blog.common.middleware import *
 
 # 注册相关路由
 from blog.article import article_api
+from blog.sentry import sentry_api
 
 app.register_blueprint(article_api, url_prefix="/api/v1/blog")
+app.register_blueprint(sentry_api, url_prefix="/api/v1/sentry")

@@ -21,3 +21,6 @@ REDIS_HOST = os.environ.get("REDIS_HOST")
 REDIS_PORT = os.environ.get("REDIS_PORT")
 REDIS_DB = int(os.environ.get("REDIS_DB", "0"))
 REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD")
+
+# SENTRY配置
+SENTRY_DSN = os.environ.get("SENTRY_DSN")
