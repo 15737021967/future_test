@@ -27,10 +27,7 @@ class ArticleTest(BaseTestCase):
             for tag in tag_ins_list
         ]
         cls.category_id = category_ins.id
-        print(str(category_ins.id))
-        n = category_ins.name
 
-    @unittest.skip("")
     def test_article_add(self):
         title = "123"
         describe = "123"

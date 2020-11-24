@@ -1,10 +1,16 @@
 import asyncio
+import dataclasses
+import datetime
+import decimal
+import json
+
 import redis
 
 from blog import env
 
 from asyncio import Future
 from typing import List
+from blog.common.logging import logger
 
 
 class RedisClient:
@@ -52,6 +58,45 @@ def init_async_task(tasks: List[Future]):
     loop = asyncio.get_event_loop()
     loop.run_until_complete(asyncio.wait(tasks))
     return [task.result() for task in tasks]
+
+
+date_format = '%Y-%m-%d'
+time_format = '%H:%M'
+time_ms_format = '%H:%M:%S'
+datetime_format = ' '.join([date_format, time_format])
+datetime_ms_format = ' '.join([date_format, time_ms_format])
+datetime_hour_format = ' '.join([date_format, '%H:00'])
+
+
+class WebSDKJSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, decimal.Decimal):
+            if o == o.to_integral_value():
+                return int(o)
+            return float(o)
+        elif dataclasses.is_dataclass(o):
+            return dataclasses.asdict(o)
+        elif isinstance(o, datetime.datetime):
+            return o.strftime(datetime_format)
+        elif isinstance(o, datetime.date):
+            return o.strftime(date_format)
+        elif isinstance(o, datetime.time):
+            return o.strftime(time_format)
+        elif isinstance(o, bytes):
+            return o.decode('utf-8')
+        return super().default(o)
+
+
+class DecimalEncoder(WebSDKJSONEncoder):
+    def default(self, o):
+        try:
+            return super().default(o)
+        except TypeError:
+            logger.error("json encoder error", stack_info=True)
+            return ""
+
+
+response_encoder = DecimalEncoder(indent=None, separators=(',', ':'))
 
 
 
