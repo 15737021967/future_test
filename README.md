@@ -24,6 +24,9 @@ REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_DB=1
 REDIS_PASSWORD=
+
+# SENTRY配置
+SENTRY_DSN=
 ```
 export FLASK_APP=blog
 
@@ -35,3 +38,6 @@ flask db migrate
 flask db upgrade
 运行shell脚本
 flask shell
+
+
+这个项目主要是用来实现一些有意思的功能
