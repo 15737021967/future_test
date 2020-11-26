@@ -1,7 +1,7 @@
-from blog.tests import BaseTestCase
-from blog.article import models
-from blog.article import repository
-from blog import db
+from feature.tests import BaseTestCase
+from feature.article import models
+from feature.article import repository
+from feature import db
 import unittest
 
 

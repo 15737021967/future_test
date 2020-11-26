@@ -1,5 +1,5 @@
-from blog.article.models import Article
-from blog import db
+from feature.article.models import Article
+from feature import db
 
 
 class ArticleRepority:

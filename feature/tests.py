@@ -3,7 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_testing import TestCase
 
-from blog import env
+from feature import env
 
 dotenv.load_dotenv()
 

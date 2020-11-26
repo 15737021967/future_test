@@ -1,4 +1,4 @@
-from blog.article.repository import ArticleRepority
+from feature.article.repository import ArticleRepority
 from typing import Union
 
 

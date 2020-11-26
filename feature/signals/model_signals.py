@@ -1,4 +1,4 @@
-from blog.signals.base import Signal
+from feature.signals.base import Signal
 
 
 class ModelSignal(Signal):

@@ -1,6 +1,6 @@
 import sentry_sdk
 
-from blog import env
+from feature import env
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -32,15 +32,15 @@ if not TESTING:
 
 else:
     # 单元测试使用测试的db
-    from blog import tests
+    from feature import tests
     db = tests.db
 
 # 加载中间件
-from blog.common.middleware import *
+from feature.common.middleware import *
 
 # 注册相关路由
-from blog.article import article_api
-from blog.sentry import sentry_api
+from feature.article import article_api
+from feature.sentry import sentry_api
 
-app.register_blueprint(article_api, url_prefix="/api/v1/blog")
+app.register_blueprint(article_api, url_prefix="/api/v1/feature")
 app.register_blueprint(sentry_api, url_prefix="/api/v1/sentry")

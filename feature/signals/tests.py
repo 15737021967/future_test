@@ -1,4 +1,4 @@
-from blog.signals.test_model import TestModel
+from feature.signals.test_model import TestModel
 
 
 if __name__ == '__main__':

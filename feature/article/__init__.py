@@ -5,5 +5,5 @@ article_api = Blueprint(
     __name__
 )
 
-from blog.article import views
-from blog.article import models
+from feature.article import views
+from feature.article import models

@@ -1,6 +1,6 @@
 from flask import request, jsonify
-from blog.article import article_api
-from blog.article.service import ArticleService
+from feature.article import article_api
+from feature.article.service import ArticleService
 import json
 
 

@@ -1,4 +1,4 @@
-from blog.signals.model_signals import pre_init, post_init
+from feature.signals.model_signals import pre_init, post_init
 
 
 class TestModel:

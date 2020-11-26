@@ -1,6 +1,6 @@
 import celery
 from abc import ABC
-from blog import app
+from feature import app
 
 
 class ContextTask(celery.Task, ABC):

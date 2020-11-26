@@ -1,5 +1,5 @@
-from blog import db
-from blog.common.models import BaseModel
+from feature import db
+from feature.common.models import BaseModel
 
 
 article_tag_table = db.Table(

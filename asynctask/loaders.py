@@ -1,5 +1,5 @@
 import pathlib
-from blog.common.logging import logger
+from feature.common.logging import logger
 from typing import List
 
 

@@ -6,11 +6,11 @@ import json
 
 import redis
 
-from blog import env
+from feature import env
 
 from asyncio import Future
 from typing import List
-from blog.common.logging import logger
+from feature.common.logging import logger
 
 
 class RedisClient:
@@ -19,7 +19,7 @@ class RedisClient:
     """
 
     def __init__(self):
-        self.prefix = "blog_"
+        self.prefix = "feature_"
         self.client = redis.Redis(
             host=env.REDIS_HOST,
             port=env.REDIS_PORT,

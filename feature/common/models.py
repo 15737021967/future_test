@@ -1,4 +1,4 @@
-from blog import db
+from feature import db
 from sqlalchemy import func, text
 
 

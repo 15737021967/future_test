@@ -1,2 +1,2 @@
 test:
-	export TESTING=1 && pytest -c pytest.ini blog/
+	export TESTING=1 && pytest -c pytest.ini feature/

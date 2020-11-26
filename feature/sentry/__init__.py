@@ -6,5 +6,5 @@ sentry_api = Blueprint(
 )
 
 
-from blog.sentry.models import *
-from blog.sentry.views import *
+from feature.sentry.models import *
+from feature.sentry.views import *

@@ -1,9 +1,9 @@
 import datetime
 import json
 
-from blog.tests import BaseTestCase
-from blog.common.utils import response_encoder
-from blog.common.value_objects.test_object import TestObject
+from feature.tests import BaseTestCase
+from feature.common.utils import response_encoder
+from feature.common.value_objects.test_object import TestObject
 
 
 class TestCommon(BaseTestCase):

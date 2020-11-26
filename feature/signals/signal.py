@@ -1,6 +1,6 @@
-from blog.signals.base import subscribe
-from blog.signals.model_signals import pre_init, post_init
-from blog.signals.test_model import TestModel
+from feature.signals.base import subscribe
+from feature.signals.model_signals import pre_init, post_init
+from feature.signals.test_model import TestModel
 
 
 @subscribe(pre_init, sender=TestModel)

@@ -28,7 +28,7 @@ REDIS_PASSWORD=
 # SENTRY配置
 SENTRY_DSN=
 ```
-export FLASK_APP=blog
+export FLASK_APP=feature
 
 运行项目
 flask run

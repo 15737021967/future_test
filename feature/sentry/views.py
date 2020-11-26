@@ -1,4 +1,4 @@
-from blog.sentry import sentry_api
+from feature.sentry import sentry_api
 from flask import jsonify
 
 
