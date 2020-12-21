@@ -1,6 +1,7 @@
 使用说明
 
 因为是将配置写在环境变量中，所以再本地需要先创建一个.env文件
+
 ```text
 # 运行环境
 ENV=local
@@ -28,16 +29,9 @@ REDIS_PASSWORD=
 # SENTRY配置
 SENTRY_DSN=
 ```
+
 export FLASK_APP=feature
 
-运行项目
-flask run
-生成migrations文件
-flask db migrate
-执行迁移脚本
-flask db upgrade
-运行shell脚本
-flask shell
-
+运行项目 flask run 生成migrations文件 flask db migrate 执行迁移脚本 flask db upgrade 运行shell脚本 flask shell
 
 这个项目主要是用来实现一些有意思的功能

@@ -41,6 +41,9 @@ from feature.common.middleware import *
 # 注册相关路由
 from feature.article import article_api
 from feature.sentry import sentry_api
+from feature import demo
 
 app.register_blueprint(article_api, url_prefix="/api/v1/feature")
 app.register_blueprint(sentry_api, url_prefix="/api/v1/sentry")
+
+from feature.command import *
