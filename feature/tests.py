@@ -10,8 +10,11 @@ dotenv.load_dotenv()
 app = Flask(__name__)
 app.config['TESTING'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = env.SQLALCHEMY_UNITTEST_DATABASE_URI
-app.config["SQLALCHEMY_ECHO"] = env.SQLALCHEMY_ECHO
+app.config["SQLALCHEMY_ECHO"] = False
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_size': 10, 'pool_recycle': 120
+}
 
 db = SQLAlchemy(app=app)
 
