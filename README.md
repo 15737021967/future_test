@@ -34,4 +34,7 @@ export FLASK_APP=feature
 
 运行项目 flask run 生成migrations文件 flask db migrate 执行迁移脚本 flask db upgrade 运行shell脚本 flask shell
 
+测试样例可复用，单元测试参考`tests/tests.py`.
+
+
 这个项目主要是用来实现一些有意思的功能
