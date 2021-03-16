@@ -44,11 +44,12 @@ class SampleData:
 
         return self.instance.id
 
-    def relation_model(self):
+    def relation_model(self, source):
+        assert id(source) != id(self), "You add ring dependencies..."
         result = [self]
         for key, value in self.data.items():
             if isinstance(value, SampleData):
-                result.extend(value.relation_model())
+                result.extend(value.relation_model(source=self))
         return result
 
     def init_instance(self):
@@ -64,7 +65,7 @@ class BaseEnv:
 
     def init_relation(self):
         for item in self.sample_data_list:
-            self.relation.extend(item.relation_model())
+            self.relation.extend(item.relation_model(source=None))
         self.relation = set(self.relation)
 
     def __enter__(self):

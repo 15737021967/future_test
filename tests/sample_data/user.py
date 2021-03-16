@@ -1,3 +1,6 @@
+from tests.base.base import SampleData
+
+
 class User:
     """
     样例数据
@@ -7,10 +10,11 @@ class User:
             setattr(self, key, value)
 
 
-common_user_1 = User(
-    user_info={
+common_user_1 = SampleData(
+    model=User,
+    data={
         "id": 1,
-        "nickname": "test nickname",
+        "nickname": "普通用户",
         "is_admin": False,
         "is_staff": False,
         "is_ta": False,
@@ -19,7 +23,7 @@ common_user_1 = User(
         "is_editor": False,
         "is_tutor": False,
         "is_superuser": False,
-        "avatar": "test_avatar_1",
+        "avatar": user.DEFAULT_AVATAR,
         "subscribed": False,
         "email": "test_1@ninechapter.com",
         "country_code": "86",
@@ -42,8 +46,9 @@ common_user_1 = User(
 )
 
 
-common_user_2 = User(
-    user_info={
+common_user_2 = SampleData(
+    model=User,
+    data={
         "id": 2,
         "nickname": "test nickname 2",
         "is_admin": False,
@@ -72,5 +77,48 @@ common_user_2 = User(
         "has_bind_wechat": True,
         "has_bind_wechat_oa": False,
         "credit": 2,
+    }
+)
+
+
+super_user_1 = SampleData(
+    model=User,
+    data={
+        "id": 3,
+        "nickname": "超级管理员",
+        "is_admin": False,
+        "is_staff": False,
+        "is_ta": False,
+        "is_ta_admin": False,
+        "is_teacher": False,
+        "is_editor": False,
+        "is_tutor": False,
+        "is_superuser": True,
+        "avatar": "user.DEFAULT_AVATAR",
+        "subscribed": False,
+        "email": "test_3@ninechapter.com",
+        "country_code": "86",
+        "phone_number": "12345672",
+        "is_paid": False,
+        "full_name": "test_full_name_3",
+        "refer_code": '1243',
+        "tags": ("test_123", "test_222"),
+        "is_completed": False,
+        "is_activated": True,
+        "is_authenticated": True,
+        "lintcode_id": "3",
+        "lintcode_data": {},
+        "timezone": 2,
+        "has_bind_wechat": True,
+        "has_bind_wechat_oa": False,
+        "credit": 2,
+    }
+)
+
+
+anonymous_user = SampleData(
+    model=User,
+    data={
+        "id": 4
     }
 )
