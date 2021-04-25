@@ -1,4 +1,4 @@
-from feature.article import models
+from ezreal.article import models
 from tests.base.base import SampleData
 
 

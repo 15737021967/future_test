@@ -1,5 +1,5 @@
 import pathlib
-from feature.common.logging import logger
+from ezreal.common.logging import logger
 from typing import List
 
 

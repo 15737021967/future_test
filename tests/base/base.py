@@ -1,6 +1,6 @@
 from typing import List
-from feature import db
-from feature.common.models import BaseModel
+from ezreal import db
+from ezreal.common.models import BaseModel
 from sqlalchemy.engine import reflection
 
 INSPECTOR = reflection.Inspector.from_engine(db.engine)
@@ -44,12 +44,11 @@ class SampleData:
 
         return self.instance.id
 
-    def relation_model(self, source):
-        assert id(source) != id(self), "You add ring dependencies..."
+    def relation_model(self):
         result = [self]
         for key, value in self.data.items():
             if isinstance(value, SampleData):
-                result.extend(value.relation_model(source=self))
+                result.extend(value.relation_model())
         return result
 
     def init_instance(self):
@@ -65,7 +64,7 @@ class BaseEnv:
 
     def init_relation(self):
         for item in self.sample_data_list:
-            self.relation.extend(item.relation_model(source=None))
+            self.relation.extend(item.relation_model())
         self.relation = set(self.relation)
 
     def __enter__(self):
@@ -78,5 +77,5 @@ class BaseEnv:
             ins.init_instance()
         model_list = BaseModel.__subclasses__()
         for model in model_list:
-            model.query.delete()
+            db.session.query(model).delete()
         db.session.commit()

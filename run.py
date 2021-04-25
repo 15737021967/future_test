@@ -1,4 +1,4 @@
-from feature import app
+from ezreal import app
 
 if __name__ == '__main__':
 

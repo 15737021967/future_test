@@ -1,0 +1,47 @@
+import sentry_sdk
+
+from ezreal.config import config
+from flask import Flask
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+
+app = Flask(__name__)
+app.config.from_object(config)
+
+sentry_sdk.init(
+    dsn=app.config.get("SENTRY_DSN"),
+    integrations=[FlaskIntegration()],
+    traces_sample_rate=1.0
+)
+
+TESTING = app.config.get("TESTING")
+
+if not TESTING:
+    db = SQLAlchemy(app=app)
+    migrate = Migrate(app, db)
+
+else:
+    # 单元测试使用测试的db
+    from ezreal import tests
+    db = tests.db
+
+# 加载中间件
+from ezreal.middleware import *
+
+# 加载脚本
+from ezreal.command import *
+
+# 注册相关路由
+from ezreal.article import article_api
+
+
+router_list = [
+    article_api
+]
+
+app.register_blueprint(article_api, url_prefix="/api/v1/ezreal")
+
+
+

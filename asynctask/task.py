@@ -1,6 +1,6 @@
 import celery
 from abc import ABC
-from feature import app
+from ezreal import app
 
 
 class ContextTask(celery.Task, ABC):
