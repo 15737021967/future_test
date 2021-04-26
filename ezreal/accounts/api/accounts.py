@@ -1,7 +1,7 @@
 import json
 
 from ezreal.accounts.services import accounts as accounts_service
-from flask import request, g
+from flask import request, g, jsonify
 
 from flask import Blueprint
 
@@ -17,4 +17,5 @@ def sign_in():
     accounts = data.get("accounts")
     password = data.get("password")
     data = accounts_service.AccountsService
+    return jsonify("ok")
 
