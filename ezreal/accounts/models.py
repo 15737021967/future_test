@@ -10,6 +10,7 @@ class User(BaseModel):
     password = db.Column(db.String(128), verbose_name="密码", nullable=False)
     salt = db.Column(db.String(128), nullable=False)
     is_superuser = db.Column(db.Boolean, server_default=False, verbose_name="超级管理员")
+    is_staff = db.Column(db.Boolean, server_default=False, verbose_name="是否是职员")
     is_active = db.Column(db.Boolean, server_default=False, verbose_name="活跃用户")
     date_joined = db.Column(db.TIMESTAMP, null=True, verbose_name="注册时间")
     last_login_datetime = db.Column(db.TIMESTAMP, null=True, verbose_name="上一次登录时间")

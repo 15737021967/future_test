@@ -7,7 +7,6 @@ from ezreal.ez_jwt import utils
 from ezreal.ez_jwt.backends import token_backend
 
 
-
 class Token:
 
     token_type = None
@@ -19,7 +18,7 @@ class Token:
             raise exceptions.TokenError("Cannot create token with no type or lifetime")
 
         self.token = token
-        self.current_time = datetime.datetime.now()
+        self.current_time = datetime.datetime.utcnow()
 
         # Set up token
         if token is not None:
@@ -28,8 +27,8 @@ class Token:
             # Decode token
             try:
                 self.payload = token_backend.decode(token, verify=verify)
-            except exceptions.TokenBackendError:
-                raise exceptions.TokenBackendError
+            except exceptions.InvalidTokenError:
+                raise exceptions.InvalidTokenError
 
             if verify:
                 self.verify()

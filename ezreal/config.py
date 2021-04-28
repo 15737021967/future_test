@@ -17,13 +17,14 @@ class Config:
     JWT_AUDIENCE = os.environ.get("JWT_AUDIENCE", "")
     JWT_ISSUER = os.environ.get("JWT_ISSUER", "")
 
-    JWT_ACCESS_TOKEN_LIFETIME = os.environ.get("JWT_ACCESS_TOKEN_LIFETIME", 5)
-    JWT_REFRESH_TOKEN_LIFETIME = os.environ.get("JWT_REFRESH_TOKEN_LIFETIME", 60 * 24)
+    # 单位-分钟
+    JWT_ACCESS_TOKEN_LIFETIME = int(os.environ.get("JWT_ACCESS_TOKEN_LIFETIME", 5))
+    # 单位-分钟
+    JWT_REFRESH_TOKEN_LIFETIME = int(os.environ.get("JWT_REFRESH_TOKEN_LIFETIME", 60 * 24))
     JWT_ROTATE_REFRESH_TOKENS = bool(os.environ.get("JWT_ROTATE_REFRESH_TOKENS", 0))
 
     JWT_TOKEN_TYPE_CLAIM = os.environ.get("JWT_TOKEN_TYPE_CLAIM", "token_type")
     JWT_JTI_CLAIM = os.environ.get("JWT_JTI_CLAIM", "jti")
-
 
     # SQLALCHEMY配置信息
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")

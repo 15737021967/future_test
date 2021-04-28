@@ -1,10 +1,9 @@
 from ezreal.expections import BuildException
 
 
-
 class TokenBuildException(BuildException):
     exception_code = 'Z'
-    exception_number = 1000
+    exception_number = 10000
 
 
 TokenBackendError = TokenBuildException.build(

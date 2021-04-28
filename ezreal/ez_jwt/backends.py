@@ -61,7 +61,7 @@ class TokenBackend:
                 options={'verify_aud': self.audience is not None}
             )
         except InvalidTokenError:
-            raise exceptions.InvalidTokenError("Token is invalid or expired")
+            raise exceptions.InvalidTokenError(message="Token is invalid or expired")
 
 
 token_backend = TokenBackend(
