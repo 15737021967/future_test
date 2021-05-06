@@ -18,7 +18,7 @@ accounts_api = Blueprint(
 )
 
 
-@accounts_api.route('/sign_in/', methods=['POST'])
+@accounts_api.route('/sign-in/', methods=['POST'])
 def sign_in():
     try:
         serializer = SignInSerializer().load(json.loads(request.get_data()))
