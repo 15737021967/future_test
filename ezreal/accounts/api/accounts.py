@@ -1,8 +1,14 @@
 import json
 
+from marshmallow import ValidationError
+
+from ezreal.accounts.exceptions import AuthError
 from ezreal.accounts.serializers.account import SignInSerializer
-from ezreal.accounts.services import accounts as accounts_service
+from ezreal.accounts.services.accounts import AccountsService
 from flask import request, g, jsonify
+
+from ezreal.common.exceptions import ParamsRequiredError
+from ezreal.common.response import standard_response_with_data, standard_exception_response
 
 from flask import Blueprint
 
@@ -14,7 +20,13 @@ accounts_api = Blueprint(
 
 @accounts_api.route('/sign_in/', methods=['POST'])
 def sign_in():
-    serializer = SignInSerializer().load(json.loads(request.get_data()))
-    data = accounts_service.AccountsService
-    return jsonify("ok")
+    try:
+        serializer = SignInSerializer().load(json.loads(request.get_data()))
+        result = AccountsService.sign_in(**serializer)
+    except ValidationError as e:
+        return standard_exception_response(ParamsRequiredError)
 
+    except AuthError as e:
+        return standard_exception_response(e)
+
+    return standard_response_with_data(result)

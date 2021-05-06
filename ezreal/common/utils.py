@@ -30,6 +30,7 @@ class RedisClient:
 
     def set(self, name, value):
         name = self.generate_key(name)
+        self.client.lock()
         return self.client.set(name, value)
 
     def setex(self, name, time, value):

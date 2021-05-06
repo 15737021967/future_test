@@ -1,7 +1,7 @@
 import sentry_sdk
 
 from ezreal.config import config
-from flask import Flask
+from flask import Flask, jsonify
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sentry_sdk.integrations.flask import FlaskIntegration
@@ -9,6 +9,12 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 
 app = Flask(__name__)
 app.config.from_object(config)
+
+
+@app.route('/health/')
+def health():
+    return jsonify('ok')
+
 
 sentry_sdk.init(
     dsn=app.config.get("SENTRY_DSN"),
@@ -34,14 +40,12 @@ from ezreal.middleware import *
 from ezreal.command import *
 
 # 注册相关路由
-from ezreal.article import article_api
+from ezreal.accounts.api import accounts_api
 
 
 router_list = [
-    article_api
+    accounts_api
 ]
 
-app.register_blueprint(article_api, url_prefix="/api/v1/ezreal")
-
-
-
+for api in router_list:
+    app.register_blueprint(api, url_prefix=f"/v1/api/{api.name}")

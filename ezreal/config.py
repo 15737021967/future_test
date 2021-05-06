@@ -25,6 +25,8 @@ class Config:
 
     JWT_TOKEN_TYPE_CLAIM = os.environ.get("JWT_TOKEN_TYPE_CLAIM", "token_type")
     JWT_JTI_CLAIM = os.environ.get("JWT_JTI_CLAIM", "jti")
+    JWT_USER_ID_FIELD = os.environ.get("JWT_USER_ID_FIELD", "id")
+    JWT_USER_ID_CLAIM = os.environ.get("JWT_USER_ID_CLAIM", "user_id")
 
     # SQLALCHEMY配置信息
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")

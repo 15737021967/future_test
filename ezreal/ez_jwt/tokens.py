@@ -88,7 +88,7 @@ class Token:
 
     def set_jti(self):
 
-        self.payload[config.JTI_CLAIM] = uuid4().hex
+        self.payload[config.JWT_JTI_CLAIM] = uuid4().hex
 
     def set_exp(self, claim='exp', from_time=None, lifetime=None):
         """
@@ -120,6 +120,17 @@ class Token:
         if claim_time <= current_time:
             raise exceptions.TokenError(f"Token '{claim}' claim has expired")
 
+    @classmethod
+    def for_user(cls, user):
+        user_id = getattr(user, config.JWT_USER_ID_FIELD)
+        if not isinstance(user_id, int):
+            user_id = str(user_id)
+
+        token = cls()
+        token[config.JWT_TOKEN_TYPE_CLAIM] = user_id
+
+        return token
+
 
 class AccessToken(Token):
     token_type = 'access'
@@ -128,7 +139,7 @@ class AccessToken(Token):
 
 class RefreshToken(Token):
     token_type = 'refresh'
-    lifetime = config.JWT_REFRESH_TOKEN_LIFETIME
+    lifetime = datetime.timedelta(seconds=config.JWT_REFRESH_TOKEN_LIFETIME)
     no_copy_claims = (
         config.JWT_TOKEN_TYPE_CLAIM,
         'exp',
