@@ -3,7 +3,7 @@ import json
 from marshmallow import ValidationError
 
 from ezreal.accounts.exceptions import AuthError
-from ezreal.accounts.serializers.account import SignInSerializer
+from ezreal.accounts.serializers.account import SignInSerializer, SignUpSerializer
 from ezreal.accounts.services.accounts import AccountsService
 from flask import request
 
@@ -27,3 +27,14 @@ def sign_in():
         return standard_exception_response(e)
 
     return standard_response_with_data(result)
+
+
+@accounts_api.route('/sign-up/', methods=['POST'])
+def sign_up():
+    try:
+        serializer = SignUpSerializer().load(json.loads(request.get_data()))
+        result = AccountsService.sign_in(**serializer)
+    except ValidationError:
+        return standard_exception_response(ParamsRequiredError)
+
+    return standard_response_with_data('ok')
