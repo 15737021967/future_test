@@ -1,6 +1,6 @@
 from ezreal import db
 from ezreal.accounts.exceptions import AuthError, EmailHasBeenRegistered, VerifyCodeError
-from ezreal.accounts.factories.verify_code_factory import VerifyCodeFactory
+from ezreal.accounts.factories import VerifyCodeFactory
 from ezreal.accounts.models import User, UserProfile
 from ezreal.common import service
 from ezreal.ez_jwt.tokens import RefreshToken
