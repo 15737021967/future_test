@@ -9,6 +9,8 @@ class Config:
     # 运行环境
     ENV = os.environ.get("ENV")
     TESTING = int(os.environ.get("TESTING", 0))
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SUPER_VERIFY_CODE = os.environ.get('SUPER_VERIFY_CODE')
 
     # JWT 配置
     JWT_ALGORITHM = os.environ.get("JWT_ALGORITHM", 'HS256')

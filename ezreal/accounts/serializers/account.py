@@ -7,10 +7,11 @@ class SignInSerializer(Schema):
     remember_me = fields.Boolean(default=False)
 
 
-class SignUpSerializer(Schema):
+class EmailSignUpSerializer(Schema):
     email = fields.Email(required=True)
     password = fields.String(required=True)
     confirm_password = fields.String(required=True)
+    verify_code = fields.String(required=True)
 
     @validates_schema
     def validate_confirm_password(self, data, **kwargs):

@@ -19,7 +19,7 @@ class RedisClient:
     """
 
     def __init__(self):
-        self.prefix = "feature_"
+        self.prefix = "ezreal_"
         self.client = redis.Redis(
             host=config.REDIS_HOST,
             port=config.REDIS_PORT,
@@ -30,7 +30,6 @@ class RedisClient:
 
     def set(self, name, value):
         name = self.generate_key(name)
-        self.client.lock()
         return self.client.set(name, value)
 
     def setex(self, name, time, value):
@@ -47,6 +46,16 @@ class RedisClient:
 
     def generate_key(self, name):
         return self.prefix + name
+
+    def lock(self, name, timeout=None, sleep=0.1, blocking_timeout=None, lock_class=None, thread_local=True):
+        name = self.generate_key(name)
+        return self.client.lock(
+            name, timeout=timeout,
+            sleep=sleep,
+            blocking_timeout=blocking_timeout,
+            lock_class=lock_class,
+            thread_local=thread_local
+        )
 
 
 redis_client = RedisClient()

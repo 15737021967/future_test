@@ -25,3 +25,10 @@ EmailHasBeenRegistered = AccountBuildException.build(
     exception_code=AccountBuildException.exception_code+str(AccountBuildException.exception_number+3).zfill(4),
     exception_message='Email has been registered'
 )
+
+
+VerifyCodeError = AccountBuildException.build(
+    exception_name='VerifyCodeError',
+    exception_code=AccountBuildException.exception_code+str(AccountBuildException.exception_number+4).zfill(4),
+    exception_message='Verify code error.'
+)
