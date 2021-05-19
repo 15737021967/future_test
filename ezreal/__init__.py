@@ -1,7 +1,7 @@
 import sentry_sdk
 
 from ezreal.config import config
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sentry_sdk.integrations.flask import FlaskIntegration
@@ -14,6 +14,11 @@ app.config.from_object(config)
 @app.route('/health/')
 def health():
     return jsonify('ok')
+
+
+@app.route('/video/')
+def video():
+    return render_template('demo.html')
 
 
 sentry_sdk.init(

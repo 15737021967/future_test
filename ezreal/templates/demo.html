@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flv.js demo</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
+    <script>
+        function switchUrl() {
+            streamURL = document.getElementById('urlInput');
+            url = streamURL.value
+            type = url.split('.').pop()
+            var mediaDataSource = {
+                'type': type,
+                'url': url
+            }
+            flv_load_mds(mediaDataSource)
+        }
+        function flv_load_mds(mediaDataSource) {
+            var element = document.getElementById('videoElement');
+            if (typeof player !== "undefined") {
+                if (player != null) {
+                    player.unload();
+                    player.detachMediaElement();
+                    player.destroy();
+                    player = null;
+                }
+            }
+            player = flvjs.createPlayer(mediaDataSource);
+            player.attachMediaElement(element);
+            player.load();
+            player.play()
+        }
+    </script>
+</head>
+<body>
+<input type="text" name="firstname" id="urlInput">
+<button onclick="switchUrl()">Switch to URL</button>
+<video id="videoElement" controls></video>
+</body>
+</html>
