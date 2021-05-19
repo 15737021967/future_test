@@ -1,8 +1,6 @@
 from ezreal import app
+from ezreal import config
 
 if __name__ == '__main__':
 
-    host = ""
-    port = ""
-
-    app.run(host=host, port=port)
+    app.run(host=config.APP_HOST, port=config.APP_PORT)

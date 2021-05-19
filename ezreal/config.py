@@ -8,6 +8,8 @@ class Config:
 
     # 运行环境
     ENV = os.environ.get("ENV")
+    APP_HOST = os.environ.get('APP_HOST', '0.0.0.0')
+    APP_PORT = os.environ.get('APP_PORT', 5001)
     TESTING = int(os.environ.get("TESTING", 0))
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SUPER_VERIFY_CODE = os.environ.get('SUPER_VERIFY_CODE')

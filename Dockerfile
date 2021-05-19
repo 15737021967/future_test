@@ -1,6 +1,6 @@
 FROM python:3.7
 
-ENV FLASK_APP feature
+ENV FLASK_APP ezreal
 
 WORKDIR /opt/code
 COPY requirements.txt /opt/code
@@ -14,4 +14,4 @@ RUN mkdir -p ~/.pip && echo "[global]" > ~/.pip/pip.conf \
 
 COPY . /opt/code
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "-w", "4", "-c", "gunicfg.py", "applet:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8081", "-w", "2", "ezreal:app"]
