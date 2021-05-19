@@ -3,6 +3,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.env
 .pytest_cache/
 assets/
 test_report.html
