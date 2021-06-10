@@ -1,16 +1,14 @@
 import json
 
+from flask import Blueprint
+from flask import request
 from marshmallow import ValidationError
 
 from ezreal.accounts.exceptions import AuthError
 from ezreal.accounts.serializers.account import SignInSerializer, EmailSignUpSerializer
 from ezreal.accounts.services.accounts import AccountsService
-from flask import request
-
 from ezreal.common.exceptions import ParamsRequiredError
 from ezreal.common.response import standard_response_with_data, standard_exception_response
-
-from flask import Blueprint
 
 accounts_api = Blueprint('accounts', __name__)
 

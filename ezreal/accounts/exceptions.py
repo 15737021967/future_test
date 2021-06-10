@@ -2,7 +2,7 @@ from ezreal.expections import BuildException
 
 
 class AccountBuildException(BuildException):
-    exception_code = 'B'
+    exception_code = 'C'
     exception_number = 10000
 
 
